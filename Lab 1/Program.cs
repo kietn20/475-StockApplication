@@ -1,6 +1,7 @@
 ﻿using System;
+using Stock;
 
-namespace StockApplication
+namespace Stock
 {
     class Program
     {
