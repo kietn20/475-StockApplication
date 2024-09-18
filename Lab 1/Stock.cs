@@ -57,18 +57,18 @@ namespace Stock
         }
 
         //--------------------------------------------------------------------------------------
-            // delegate
-            //public delegate void StockNotification(String stockName, int currentValue, int numberChanges);
-            // event
-            //public event StockNotification ProcessComplete;
+        // delegate
+        //public delegate void StockNotification(String stockName, int currentValue, int numberChanges);
+        // event
+        //public event StockNotification ProcessComplete;
         //------------------------------------------------------------------------------------------
-            /// <summary>
-            /// Changes the stock value and also raising the event of stock value changes
-            /// </summary>
+        /// <summary>
+        /// Changes the stock value and also raising the event of stock value changes
+        /// </summary>
         public void ChangeStockValue()
         {
             var rand = new Random();
-            CurrentValue += rand.Next(1, MaxChange);
+            CurrentValue += rand.Next(0, MaxChange);
             NumChanges++;
             if ((CurrentValue - InitialValue) > Threshold)
             { //RAISE THE EVENT
