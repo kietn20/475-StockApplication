@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-namespace Stock
+namespace Stocks
 {
     public class Stock
     {
@@ -18,11 +18,11 @@ namespace Stock
 
         private readonly Thread _thread;
         public string StockName { get => _name; set => _name = value; }
-        public int InitialValue;
-        public int CurrentValue;
-        public int MaxChange;
-        public int Threshold;
-        public int NumChanges;
+        public int InitialValue { get => _initialValue; set => _initialValue = value; }
+        public int CurrentValue { get => _currentValue; set => _currentValue = value; }
+        public int MaxChange { get => _maxChange; set => _maxChange = value; }
+        public int Threshold { get => _threshold; set => _threshold = value; }
+        public int NumChanges { get => _numChanges; set => _numChanges = value; }
 
         //-----------------------------------------------------------------------------
         /// <summary>
@@ -67,11 +67,15 @@ namespace Stock
         /// </summary>
         public void ChangeStockValue()
         {
+            //Console.WriteLine("Changing stock value for " + StockName);
             var rand = new Random();
             CurrentValue += rand.Next(0, MaxChange);
             NumChanges++;
+
+            //Console.WriteLine($"{CurrentValue} - {InitialValue} > {Threshold} ??? ==> {(CurrentValue - InitialValue) > Threshold}"); //+ (CurrentValue - InitialValue)
             if ((CurrentValue - InitialValue) > Threshold)
             { //RAISE THE EVENT
+                //Console.WriteLine("Raising event for " + StockName);
                 StockEvent?.Invoke(this, new StockNotification(StockName, CurrentValue, NumChanges));
             }
         }

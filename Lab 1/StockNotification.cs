@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-namespace Stock
+namespace Stocks
 {
     public class StockNotification : EventArgs
     {

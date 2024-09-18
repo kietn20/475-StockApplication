@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stock
+namespace Stocks
 {
     class Program
     {
