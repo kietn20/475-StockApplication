@@ -74,7 +74,8 @@ namespace Stocks
 
             //Console.WriteLine($"{CurrentValue} - {InitialValue} > {Threshold} ??? ==> {(CurrentValue - InitialValue) > Threshold}"); //+ (CurrentValue - InitialValue)
             if ((CurrentValue - InitialValue) > Threshold)
-            { //RAISE THE EVENT
+            { 
+                //RAISE THE EVENT
                 //Console.WriteLine("Raising event for " + StockName);
                 StockEvent?.Invoke(this, new StockNotification(StockName, CurrentValue, NumChanges));
             }
