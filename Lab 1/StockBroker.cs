@@ -17,9 +17,23 @@ namespace Stocks
         public List<Stock> stocks = new List<Stock>();
         //readonly string docPath = @"C:\Users\Documents\CECS 475\Lab3_output.txt";
         readonly string destPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Lab1_output.txt");
-        public string titles = "Broker".PadRight(10) + "Stock".PadRight(15) + "Value".PadRight(10) + "Changes".PadRight(10) + "Date and Time";
 
         public static ReaderWriterLockSlim myLock = new ReaderWriterLockSlim();
+
+        public bool printTitle = false;
+
+        static StockBroker()
+        {
+            string titles = "Broker".PadRight(16) + "Stock".PadRight(15) + "Value".PadRight(10) + "Changes".PadRight(10) + "Date and Time";
+            string destPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Lab1_output.txt");
+            
+            File.WriteAllText(destPath, string.Empty);
+            using (StreamWriter outputFile = new StreamWriter(destPath, true))
+            {
+                outputFile.WriteLine(titles);
+            }
+            Console.WriteLine(titles);
+        }
 
         //Console.WriteLine(destPath);
         //using (StreamWriter outputFile = new StreamWriter(destPath, true))
