@@ -20,8 +20,7 @@ namespace Stocks
 
         public static ReaderWriterLockSlim myLock = new ReaderWriterLockSlim();
 
-        public bool printTitle = false;
-
+        // The static constructor that empties the output file and writes the titles (runs once)
         static StockBroker()
         {
             string titles = "Broker".PadRight(16) + "Stock".PadRight(15) + "Value".PadRight(10) + "Changes".PadRight(10) + "Date and Time";
@@ -71,7 +70,7 @@ namespace Stocks
             Helper(sender, (StockNotification)e);
         }
 
-        public void Helper(Object Sender, StockNotification e)
+        public async void Helper(Object Sender, StockNotification e)
         {
             //Console.WriteLine("TEST" + e.StockName + " " + e.CurrentValue + " " + e.NumChanges); //+ " " + e.DateAndTime);
             Stock newStock = (Stock)Sender;
@@ -81,7 +80,7 @@ namespace Stocks
             {
                 using (StreamWriter outputFile = new StreamWriter(destPath, true))
                 {
-                    outputFile.WriteLine(message);
+                    await outputFile.WriteLineAsync(message);
                 }
                 Console.WriteLine(message);
             }
