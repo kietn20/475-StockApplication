@@ -76,7 +76,6 @@ namespace Stocks
             if ((CurrentValue - InitialValue) > Threshold)
             { 
                 //RAISE THE EVENT
-                //Console.WriteLine("Raising event for " + StockName);
                 StockEvent?.Invoke(this, new StockNotification(StockName, CurrentValue, NumChanges));
             }
         }
